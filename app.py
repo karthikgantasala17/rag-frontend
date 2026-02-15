@@ -76,10 +76,16 @@ if question:
 
                 if res.status_code == 200:
                     data = res.json()
+                
                     answer = data.get("answer", "")
-
+                    sources = data.get("sources", [])
+                
                     st.markdown(answer)
-
+                
+                    if sources:
+                        st.caption("Sources:")
+                        for s in sources:
+                            st.write(f"- {s['file']} (page {s['page']})")
                 else:
                     st.error("Backend error")
 
