@@ -29,6 +29,14 @@ for msg in st.session_state.messages:
 question = st.chat_input("Ask something about documents...")
 
 if question:
+
+    # ---- Greeting shortcut (ADD THIS FIRST) ----
+    if question.lower().strip() in ["hi", "hello", "hey"]:
+        with st.chat_message("assistant"):
+            st.write("Hello! Ask me a question about the documents 🙂")
+        st.stop()
+
+if question:
     with st.chat_message("user"):
         st.markdown(question)
 
