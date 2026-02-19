@@ -28,6 +28,23 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
 
+    uploaded = st.file_uploader("📄 Upload PDF", type=["pdf"])
+    
+    if uploaded:
+        files = {"file": uploaded}
+    
+        with st.spinner("Uploading..."):
+            r = requests.post(
+                f"{BACKEND_URL}/upload",
+                files=files
+            )
+    
+        if r.status_code == 200:
+            st.success("PDF uploaded and indexed")
+        else:
+            st.error("Upload failed")
+
+
 # ----------------------------------
 # Display history
 # ----------------------------------
