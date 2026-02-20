@@ -88,7 +88,7 @@ if question:
                 res = requests.post(
                     f"{BACKEND_URL}/ask",
                     json=payload,
-                    timeout=60
+                    timeout=300   # 5 minutes
                 )
 
                 if res.status_code == 200:
@@ -107,7 +107,8 @@ if question:
                     st.error("Backend error")
 
             except Exception as e:
-                st.error(str(e))
+                answer = "Model is thinking or warming up… please retry."
+                st.error(answer)
 
     # Save messages
     st.session_state.messages.append(
