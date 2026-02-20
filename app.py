@@ -104,7 +104,8 @@ if question:
                         for s in sources:
                             st.write(f"- {s['file']} (page {s['page']})")
                 else:
-                    st.error("Backend error")
+                    answer = "Backend error"
+                    st.error("answer")
 
             except Exception as e:
                 answer = "Model is thinking or warming up… please retry."
